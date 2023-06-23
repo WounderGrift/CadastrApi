@@ -61,8 +61,8 @@ class ApiComponent extends Component
             foreach ($newDataCollection as $newData) {
                 /** @var RusReestr $model */
                 $model = RusReestr::find()->where(['cadastr_number' => $newData->cadastr_number])->one();
+                $model = $this->saveData($model, $newData);
                 if (!empty($model)) {
-                    $model = $this->saveData($model, $newData);
                     $modelsToReturn[] = $model->toDto();
                 }
             }
